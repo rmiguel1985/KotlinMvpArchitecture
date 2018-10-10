@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+androidExtensions {
+    experimental = true
+}
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.adictosalainformatica.kotlinclean"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "API_URL", "\"$debug_api_url\""
+            buildConfigField "String", "API_PORT", "\"$debug_api_port\""
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'API_PORT', "\"$release_api_port\""
+            buildConfigField 'String', 'API_URL', "\"$release_api_url\""
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation "com.google.android.material:material:1.0.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta01'
+
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+
+    implementation(
+            rootProject.ext.dependencies.picasso,
+            rootProject.ext.dependencies.picasso_transformations,
+            rootProject.ext.dependencies.timber,
+            rootProject.ext.dependencies.koin,
+            rootProject.ext.dependencies.retrofit,
+            rootProject.ext.dependencies.retrofit_converter_gson,
+            rootProject.ext.dependencies.leakcanary,
+            rootProject.ext.dependencies.coroutines,
+            rootProject.ext.dependencies.gson
+    )
+
+    debugImplementation(
+            rootProject.ext.dependencies.leakcanary
+    )
+}

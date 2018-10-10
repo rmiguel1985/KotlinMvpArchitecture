@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">KotlinClean</string>
+    <string name="title_activity_avenger_detail">AvengerDetailActivity</string>
+</resources>

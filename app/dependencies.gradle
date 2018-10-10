@@ -1,0 +1,25 @@
+//@formatter:off
+
+ext {
+    timberVersion = '4.5.1'
+    retrofitVersion = '2.2.0'
+    okHttpVersion = '3.6.0'
+    picassoVersion = '2.5.2'
+    koinVersion = '1.0.0'
+    picassoTransformationsVersion = '2.1.0'
+    leakCanaryVersion = '1.6.1'
+    coroutinesVersion = '0.25.0'
+    gsonVersion = '2.8.2'
+
+    dependencies = [
+        timber                  : "com.jakewharton.timber:timber:${timberVersion}",
+        picasso                 : "com.squareup.picasso:picasso:${picassoVersion}",
+        picasso_transformations : "jp.wasabeef:picasso-transformations:${picassoTransformationsVersion}",
+        koin                    : "org.koin:koin-android:${koinVersion}",
+        retrofit                : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+        retrofit_converter_gson : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+        leakcanary              : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+        coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
+        gson                    : "com.google.code.gson:gson:${gsonVersion}"
+    ]
+}
