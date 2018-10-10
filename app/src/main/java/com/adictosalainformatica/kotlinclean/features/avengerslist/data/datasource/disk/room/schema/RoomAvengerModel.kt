@@ -2,8 +2,9 @@ package com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasou
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.adictosalainformatica.kotlinclean.utils.Constants
 
-@Entity (tableName = "avengers")
+@Entity (tableName = Constants.DATABASE_AVENGER_TABLE_NAME)
 data class RoomAvengerModel (
     @PrimaryKey
     var id: Int = 0,

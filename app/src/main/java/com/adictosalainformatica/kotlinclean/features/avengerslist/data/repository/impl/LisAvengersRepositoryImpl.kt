@@ -1,8 +1,8 @@
-package com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.repository.impl
+package com.adictosalainformatica.kotlinclean.features.avengerslist.data.repository.impl
 
 
-import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.policy.ListAvengerRepositoryPolicy
-import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.repository.ListAvengersRepository
+import com.adictosalainformatica.kotlinclean.features.avengerslist.data.policy.ListAvengerRepositoryPolicy
+import com.adictosalainformatica.kotlinclean.features.avengerslist.data.repository.ListAvengersRepository
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel
 
 class LisAvengersRepositoryImpl(private val listAvengerRepositoryPolicy: ListAvengerRepositoryPolicy) : ListAvengersRepository {

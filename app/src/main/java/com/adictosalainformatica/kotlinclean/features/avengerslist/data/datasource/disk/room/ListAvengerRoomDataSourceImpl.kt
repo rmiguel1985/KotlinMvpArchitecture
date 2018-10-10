@@ -6,7 +6,6 @@ import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasour
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Data
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Result
-import timber.log.Timber
 
 class ListAvengerRoomDataSourceImpl: ListAvengerDiskDataSource {
     override fun getAvengersList(): AvengersModel? {
@@ -27,15 +26,10 @@ class ListAvengerRoomDataSourceImpl: ListAvengerDiskDataSource {
     }
 
     override fun setAvengers(avengers: AvengersModel) {
-        try {
-            val roomDao = KotlinCleanApplication.database!!.listAvengerDao()
+        val roomDao = KotlinCleanApplication.database!!.listAvengerDao()
+        val avengerList = RoomMapper.fromModelToRoom(avengers.data!!.results!!)
 
-            val avengerList = RoomMapper.fromModelToRoom(avengers!!.data!!.results!!)
-
-            roomDao.createAll(avengerList)
-
-        } catch (exception: Exception) {
-            Timber.e("Error saving avengers")
-        }
+        avengerList.isNotEmpty().apply { roomDao.createAll(avengerList) }
     }
+
 }

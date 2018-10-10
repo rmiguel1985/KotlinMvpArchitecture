@@ -1,4 +1,4 @@
-package com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.repository;
+package com.adictosalainformatica.kotlinclean.features.avengerslist.data.repository;
 
 
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel;

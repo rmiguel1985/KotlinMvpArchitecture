@@ -1,9 +1,7 @@
 package com.adictosalainformatica.kotlinclean.features.avengerslist.koin
 
-import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.policy.ListAvengerRepositoryPolicy
-import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.policy.impl.ListAvengerRepositoryCacheWithCloudPolicyImpl
-import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.policy.impl.ListAvengerRepositoryCloudWithCachePolicyImpl
-import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.policy.impl.ListAvengerRepositoryOnlyCloudPolicyImpl
+import com.adictosalainformatica.kotlinclean.features.avengerslist.data.policy.ListAvengerRepositoryPolicy
+import com.adictosalainformatica.kotlinclean.features.avengerslist.data.policy.impl.ListAvengerRepositoryCloudWithCachePolicyImpl
 import org.koin.dsl.module.module
 
 val ListAvengerPoliciesModule = module(override=true) {

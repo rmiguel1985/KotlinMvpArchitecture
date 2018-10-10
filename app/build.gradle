@@ -20,6 +20,7 @@ android {
     }
     buildTypes {
         debug {
+            buildConfigField "String", "API_BASE_URL", "\"$debug_api_base_url\""
             buildConfigField "String", "API_URL", "\"$debug_api_url\""
             buildConfigField "String", "API_PORT", "\"$debug_api_port\""
             testCoverageEnabled true
@@ -27,8 +28,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'API_PORT', "\"$release_api_port\""
-            buildConfigField 'String', 'API_URL', "\"$release_api_url\""
+            buildConfigField 'String', 'API_BASE_URL', "\"$release_api_url\""
+            buildConfigField "String", "API_URL", "\"$release_api_url\""
+            buildConfigField 'String', 'API_URL_PORT', "\"$release_api_port\""
         }
     }
 }
@@ -53,6 +55,7 @@ dependencies {
             rootProject.ext.dependencies.koin,
             rootProject.ext.dependencies.retrofit,
             rootProject.ext.dependencies.retrofit_converter_gson,
+            rootProject.ext.dependencies.okhttp_interceptor,
             rootProject.ext.dependencies.leakcanary,
             rootProject.ext.dependencies.coroutines,
             rootProject.ext.dependencies.gson

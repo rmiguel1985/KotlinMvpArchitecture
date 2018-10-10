@@ -18,6 +18,7 @@ ext {
         koin                    : "org.koin:koin-android:${koinVersion}",
         retrofit                : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
         retrofit_converter_gson : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+        okhttp_interceptor      : "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
         leakcanary              : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
         coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
         gson                    : "com.google.code.gson:gson:${gsonVersion}"

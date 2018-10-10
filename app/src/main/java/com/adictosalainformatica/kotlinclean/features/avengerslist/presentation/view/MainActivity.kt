@@ -16,6 +16,7 @@ import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entiti
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Result
 import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.presenter.AvengersListPresenterView
 import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.presenter.PresenterImpl
+import com.adictosalainformatica.kotlinclean.utils.Constants.AVENGER_KEY
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -24,22 +25,15 @@ class MainActivity : AppCompatActivity(), AvengersListPresenterView, AvengersLis
 
 
     private val avengersListPresenter: PresenterImpl by inject()
-
     private var adapter: AvengersListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //ButterKnife.bind(this)
-
-        //getDaggerComponent().listAvengerSubcomponent().inject(this)
-
-        avengersListPresenter!!.attachView(this, lifecycle)
-        //setPresenter(avengersListPresenter)
+        avengersListPresenter.attachView(this, lifecycle)
 
         createAvengersListAdapter()
-
-        avengersListPresenter!!.loadAvengers()
+        avengersListPresenter.loadAvengers()
     }
 
     private fun createAvengersListAdapter() {
@@ -78,7 +72,7 @@ class MainActivity : AppCompatActivity(), AvengersListPresenterView, AvengersLis
                 (avengerModel.thumbnail!!.path + "." + avengerModel!!.thumbnail!!.extension),
                 (avengerModel.description!!))
 
-        intent.putExtra("avenger", avenger)
+        intent.putExtra(AVENGER_KEY, avenger)
         startActivity(intent)
     }
 }

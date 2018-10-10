@@ -1,9 +1,9 @@
-package com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.policy.impl
+package com.adictosalainformatica.kotlinclean.features.avengerslist.data.policy.impl
 
 
 import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.cloud.ListAvengerCloudDataSource
 import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.disk.ListAvengerDiskDataSource
-import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.policy.ListAvengerRepositoryPolicy
+import com.adictosalainformatica.kotlinclean.features.avengerslist.data.policy.ListAvengerRepositoryPolicy
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel
 import com.adictosalainformatica.kotlinclean.utils.ConnectivityHelper
 

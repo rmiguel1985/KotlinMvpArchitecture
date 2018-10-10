@@ -2,7 +2,11 @@ package com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasou
 
 import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.cloud.ListAvengerCloudDataSource
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel
-import com.google.gson.Gson
+import com.adictosalainformatica.kotlinclean.utils.Constants.API_END_POINT
+import com.adictosalainformatica.kotlinclean.utils.Constants.API_HASH
+import com.adictosalainformatica.kotlinclean.utils.Constants.API_KEY
+import com.adictosalainformatica.kotlinclean.utils.Constants.LIMIT
+import com.adictosalainformatica.kotlinclean.utils.Constants.TIME_STAMP
 import com.google.gson.stream.MalformedJsonException
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -20,9 +24,11 @@ class ListAvengerRetrofitDataSourceImpl(private val retrofitInstance: Retrofit) 
     lateinit var response: Response<AvengersModel>
 
     override fun getAvengersList(): AvengersModel? {
-        val call = retrofitInstance.create<ListAvengersApi>(ListAvengersApi::class.java).getCharacters(30)
-        Timber.d("url: " + call.request().url().toString())
+        val call = retrofitInstance
+                .create<ListAvengersApi>(ListAvengersApi::class.java)
+                .getCharacters(API_END_POINT, LIMIT, API_KEY, TIME_STAMP, API_HASH)
 
+        Timber.d("url: " + call.request().url().toString())
         try {
             response = call.execute()
         } catch (malformedJsonException: MalformedJsonException) {

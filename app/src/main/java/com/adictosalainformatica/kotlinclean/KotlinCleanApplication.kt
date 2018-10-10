@@ -3,12 +3,15 @@ package com.adictosalainformatica.kotlinclean
 import android.os.StrictMode
 import androidx.room.Room
 import com.adictosalainformatica.kotlinclean.base.BaseApplication
+import com.adictosalainformatica.kotlinclean.base.koin.MainModule
 import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.disk.room.schema.AppDatabase
-import com.adictosalainformatica.kotlinclean.features.avengerslist.koin.*
+import com.adictosalainformatica.kotlinclean.features.avengerslist.koin.avengersListMainModule
 import com.adictosalainformatica.kotlinclean.utils.ConnectivityHelper
+import com.adictosalainformatica.kotlinclean.utils.Constants
 import com.adictosalainformatica.kotlinclean.utils.PreferenceHelper
 import com.squareup.leakcanary.LeakCanary
 import org.koin.android.ext.android.startKoin
+import org.koin.dsl.module.Module
 import timber.log.Timber
 
 class KotlinCleanApplication: BaseApplication() {
@@ -25,14 +28,18 @@ class KotlinCleanApplication: BaseApplication() {
         initializeHelpers()
         initializeRoom()
 
+        var koinModules: MutableList<Module> = mutableListOf(MainModule)
+        koinModules.addAll(avengersListMainModule)
+
+
         startKoin(this,
-                avengersListMainModule)
+                koinModules)
     }
 
     override fun initializeRoom() {
         KotlinCleanApplication.database = Room
                 .databaseBuilder(applicationContext,
-                        AppDatabase::class.java, "avengers-database")
+                        AppDatabase::class.java, Constants.DATABASE_NAME)
                 .build()
     }
 
@@ -53,7 +60,7 @@ class KotlinCleanApplication: BaseApplication() {
      * @return true if is a debug build, otherwise false
      */
     private fun isDebugBuild(): Boolean {
-        return if (BuildConfig.DEBUG) true else false
+        return BuildConfig.DEBUG
     }
 
     /**
