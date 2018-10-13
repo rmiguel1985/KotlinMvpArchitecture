@@ -3,10 +3,9 @@ package com.adictosalainformatica.kotlinclean.base.domain.usecase
 
 import android.util.Log
 import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.android.UI
 import java.util.concurrent.CancellationException
 import kotlin.coroutines.experimental.CoroutineContext
-
-import kotlinx.coroutines.experimental.android.UI
 
 
 /**

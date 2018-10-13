@@ -1,9 +1,9 @@
 package com.adict
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.adictosalainformatica.kotlinclean.R
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Result
 import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.view.adapter.AvengersListItemViewHolder
@@ -18,7 +18,7 @@ class AvengersListAdapter(private val context: Context): RecyclerView.Adapter<Av
     }
 
     interface OnAvengerListItemClickedListener {
-        fun onAvengerListItemClicked(avengerModel:Result)
+        fun onAvengerListItemClicked(avengerModel: Result?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType:Int): AvengersListItemViewHolder {
@@ -28,10 +28,9 @@ class AvengersListAdapter(private val context: Context): RecyclerView.Adapter<Av
     val holder = AvengersListItemViewHolder(itemView, parent)
 
     itemView.setOnClickListener { view->
-        if (clickedListenerRef != null) {
-            val listener = clickedListenerRef!!.get()
-            listener?.onAvengerListItemClicked(avengers!![holder.adapterPosition])
-        }
+            clickedListenerRef?.get()?.let {
+                it.onAvengerListItemClicked(avengers?.get(holder.adapterPosition))
+            }
     }
 
 

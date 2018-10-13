@@ -1,14 +1,14 @@
 package com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.OrientationHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.adict.AvengersListAdapter
 import com.adictosalainformatica.kotlinclean.R
 import com.adictosalainformatica.kotlinclean.features.avengersdetail.AvengerDetailActivity
@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity(), AvengersListPresenterView, AvengersLis
 
     private fun createAvengersListAdapter() {
         adapter = AvengersListAdapter(applicationContext)
-        adapter!!.setOnAvengerListItemClickedListener(this)
-        avenger_list_recyclerview.layoutManager = LinearLayoutManager(this, OrientationHelper.VERTICAL, false)
+        adapter?.setOnAvengerListItemClickedListener(this)
+        avenger_list_recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         avenger_list_recyclerview.itemAnimator = DefaultItemAnimator()
         avenger_list_recyclerview.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
         avenger_list_recyclerview.adapter = adapter
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), AvengersListPresenterView, AvengersLis
 
     override fun onAvengersListLoaded(avengersList: List<Result>) {
         Timber.d("Avengers list loaded")
-        adapter!!.setAvengersList(avengersList)
+        adapter?.setAvengersList(avengersList)
     }
 
     override fun showErrorLoadingAvengersList() {
@@ -63,16 +63,21 @@ class MainActivity : AppCompatActivity(), AvengersListPresenterView, AvengersLis
         Toast.makeText(this, "Error loading avengers list", Toast.LENGTH_LONG).show()
     }
 
-    override fun onAvengerListItemClicked(avengerModel: Result) {
-        Timber.d("avenger name: " + avengerModel.name)
-        val intent = Intent(applicationContext, AvengerDetailActivity::class.java)
-        var avenger = Avenger(
-                (avengerModel.name!!),
-                (avengerModel.modified!!),
-                (avengerModel.thumbnail!!.path + "." + avengerModel!!.thumbnail!!.extension),
-                (avengerModel.description!!))
+    override fun onAvengerListItemClicked(avengerModel: Result?) {
+        avengerModel?.let {
+            Timber.d("avenger name: " + it.name)
+            val intent = Intent(applicationContext, AvengerDetailActivity::class.java)
+            val imageUrl = it.thumbnail?.path + "." + it.thumbnail?.extension
 
-        intent.putExtra(AVENGER_KEY, avenger)
-        startActivity(intent)
+            var avenger = Avenger(
+                    (it.name.orEmpty()),
+                    (it.modified.orEmpty()),
+                    (imageUrl),
+                    (it.description.orEmpty())
+            )
+
+            intent.putExtra(AVENGER_KEY, avenger)
+            startActivity(intent)
+        }
     }
 }

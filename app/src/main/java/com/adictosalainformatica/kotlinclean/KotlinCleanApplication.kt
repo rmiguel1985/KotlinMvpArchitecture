@@ -24,7 +24,6 @@ class KotlinCleanApplication: BaseApplication() {
         super.onCreate()
 
         initializeLogging()
-        initializeLogging()
         initializeHelpers()
         initializeRoom()
 
