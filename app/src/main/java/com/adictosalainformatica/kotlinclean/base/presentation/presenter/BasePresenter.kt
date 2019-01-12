@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import com.adictosalainformatica.kotlinclean.base.domain.usecase.BaseUseCase
-import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.Job
 import timber.log.Timber
 
 abstract class BasePresenter<View> : ViewModel(), LifecycleObserver {
@@ -34,6 +34,7 @@ abstract class BasePresenter<View> : ViewModel(), LifecycleObserver {
 
         view = null
         viewLifecycle = null
+        useCase?.unsubscribe()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)

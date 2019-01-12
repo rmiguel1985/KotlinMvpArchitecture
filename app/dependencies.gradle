@@ -8,8 +8,9 @@ ext {
     koinVersion = '1.0.0'
     picassoTransformationsVersion = '2.1.0'
     leakCanaryVersion = '1.6.1'
-    coroutinesVersion = '0.25.0'
+    coroutinesVersion = '1.0.0'
     gsonVersion = '2.8.2'
+    tapadooVersion = '4.0.0'
 
     dependencies = [
         timber                  : "com.jakewharton.timber:timber:${timberVersion}",
@@ -21,6 +22,7 @@ ext {
         okhttp_interceptor      : "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
         leakcanary              : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
         coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
-        gson                    : "com.google.code.gson:gson:${gsonVersion}"
+        gson                    : "com.google.code.gson:gson:${gsonVersion}",
+        tapadoo                 : "com.tapadoo.android:alerter:${tapadooVersion}"
     ]
 }
