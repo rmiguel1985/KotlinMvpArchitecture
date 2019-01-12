@@ -13,13 +13,26 @@ class PresenterImpl(private val useCaseAvenger: LoadAvengersListUseCaseImpl): Ba
     }
 
     fun loadAvengers () {
-        useCaseAvenger.execute({ avenger: AvengersModel ->
-            view()?.onAvengersListLoaded(avenger.data!!.results!!)
-            view()?.hideProgress()
-        }, { throwable ->
-            view()?.hideProgress()
-            view()?.showErrorLoadingAvengersList()
-            Timber.e(throwable.message)
-        })
+        view()?.showProgress()
+        useCaseAvenger.execute {
+            onComplete { avenger: AvengersModel ->
+                view()?.hideProgress()
+                avenger.data?.results?.let {
+                    view()?.onAvengersListLoaded(it)
+                } ?:kotlin.run {
+                    view()?.showError("Error loading avengers list")
+                }
+            }
+
+            onCancel {
+                Timber.w("${useCaseAvenger.javaClass.simpleName} cancelled ")
+            }
+
+            onError { throwable ->
+                view()?.hideProgress()
+                view()?.showError("Error loading avengers list")
+                Timber.e(throwable.message)
+            }
+        }
     }
 }

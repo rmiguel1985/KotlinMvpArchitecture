@@ -2,15 +2,14 @@ package com.adictosalainformatica.kotlinclean.features.avengerslist.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adict.AvengersListAdapter
 import com.adictosalainformatica.kotlinclean.R
+import com.adictosalainformatica.kotlinclean.base.presentation.BaseActivity
 import com.adictosalainformatica.kotlinclean.features.avengersdetail.AvengerDetailActivity
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Avenger
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Result
@@ -21,8 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), AvengersListPresenterView, AvengersListAdapter.OnAvengerListItemClickedListener {
-
+class MainActivity : BaseActivity(), AvengersListPresenterView, AvengersListAdapter.OnAvengerListItemClickedListener {
 
     private val avengersListPresenter: PresenterImpl by inject()
     private var adapter: AvengersListAdapter? = null
@@ -34,6 +32,7 @@ class MainActivity : AppCompatActivity(), AvengersListPresenterView, AvengersLis
 
         createAvengersListAdapter()
         avengersListPresenter.loadAvengers()
+        Toast.makeText(this, "asdfasdf", Toast.LENGTH_LONG).show()
     }
 
     private fun createAvengersListAdapter() {
@@ -45,22 +44,17 @@ class MainActivity : AppCompatActivity(), AvengersListPresenterView, AvengersLis
         avenger_list_recyclerview.adapter = adapter
     }
 
-    override fun showProgress() {
+    /*override fun showProgress() {
         avengerslist_progressbar_list.visibility = View.VISIBLE
-    }
+    }*/
 
-    override fun hideProgress() {
+    /*override fun hideProgress() {
         avengerslist_progressbar_list.visibility = View.GONE
-    }
+    }*/
 
     override fun onAvengersListLoaded(avengersList: List<Result>) {
         Timber.d("Avengers list loaded")
         adapter?.setAvengersList(avengersList)
-    }
-
-    override fun showErrorLoadingAvengersList() {
-        Timber.e("Error loading avengers list")
-        Toast.makeText(this, "Error loading avengers list", Toast.LENGTH_LONG).show()
     }
 
     override fun onAvengerListItemClicked(avengerModel: Result?) {

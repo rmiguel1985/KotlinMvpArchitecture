@@ -21,7 +21,7 @@ import java.io.IOException
  */
 class ListAvengerRetrofitDataSourceImpl(private val retrofitInstance: Retrofit) : ListAvengerCloudDataSource {
 
-    lateinit var response: Response<AvengersModel>
+    private lateinit var response: Response<AvengersModel>
 
     override fun getAvengersList(): AvengersModel? {
         val call = retrofitInstance
@@ -42,7 +42,7 @@ class ListAvengerRetrofitDataSourceImpl(private val retrofitInstance: Retrofit) 
         return if (response.isSuccessful) {
             response.body()
         } else {
-            Timber.e("Error(" + response.code() + "): " + response.errorBody())
+            Timber.e("Error(${response.code()}): ${response.errorBody()}")
             null
         }
     }

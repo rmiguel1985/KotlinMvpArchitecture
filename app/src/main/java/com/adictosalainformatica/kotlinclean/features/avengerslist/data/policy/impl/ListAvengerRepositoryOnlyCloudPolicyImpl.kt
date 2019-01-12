@@ -3,12 +3,12 @@ package com.adictosalainformatica.kotlinclean.features.avengerslist.data.policy.
 import com.adictosalainformatica.kotlinclean.features.avengerslist.data.datasource.cloud.ListAvengerCloudDataSource
 import com.adictosalainformatica.kotlinclean.features.avengerslist.data.policy.ListAvengerRepositoryPolicy
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel
+import com.adictosalainformatica.kotlinclean.utils.ConnectivityHelper
 
 /**
  * ListAvengerRepositoryOnlyCloudPolicyImpl Class
  *
- *
- * Cloud Policy Class
+ * <p>Cloud Policy Class</p>
  */
 class ListAvengerRepositoryOnlyCloudPolicyImpl
 (private val listAvengerCloudDataSource: ListAvengerCloudDataSource): ListAvengerRepositoryPolicy {
@@ -19,12 +19,10 @@ class ListAvengerRepositoryOnlyCloudPolicyImpl
      * @return AvengersModel avengers
      */
     override fun getAvengersList(): AvengersModel? {
+        if(ConnectivityHelper.isConnected){
+            return listAvengerCloudDataSource.getAvengersList()
+        }
 
-        /*if(ConnectivityHelper.isConnected()){
-            avengers = listAvengerCloudDataSource.getAvengersList();
-            //listAvengerDiskDataSource.setAvengers(avengers);
-        }*/
-
-        return listAvengerCloudDataSource.getAvengersList()
+        return null
     }
 }

@@ -11,7 +11,7 @@ import timber.log.Timber
  * ListAvengerRepositoryCloudWithCachePolicyImpl Class
  *
  *
- * Cloud Policy Class with Cache
+ * <p>Cloud Policy Class with Cache</p>
  */
 class ListAvengerRepositoryCloudWithCachePolicyImpl(private val listAvengerCloudDataSource: ListAvengerCloudDataSource,
                                                          private val listAvengerDiskDataSource: ListAvengerDiskDataSource)
@@ -23,7 +23,7 @@ class ListAvengerRepositoryCloudWithCachePolicyImpl(private val listAvengerCloud
      * @return AvengersModel avengers
      */
     override fun getAvengersList(): AvengersModel? {
-        if (ConnectivityHelper.isConnected) {
+        return if (ConnectivityHelper.isConnected) {
             Timber.d("Connection")
             val avengersList = listAvengerCloudDataSource.getAvengersList()
 
@@ -33,10 +33,10 @@ class ListAvengerRepositoryCloudWithCachePolicyImpl(private val listAvengerCloud
                 }
             }
 
-            return avengersList
+            avengersList
         } else {
             Timber.d("Not connection")
-            return listAvengerDiskDataSource.getAvengersList()
+            listAvengerDiskDataSource.getAvengersList()
         }
     }
 }

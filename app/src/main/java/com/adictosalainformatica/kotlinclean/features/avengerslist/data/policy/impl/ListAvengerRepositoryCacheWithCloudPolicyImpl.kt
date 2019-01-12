@@ -11,7 +11,7 @@ import com.adictosalainformatica.kotlinclean.utils.ConnectivityHelper
  * ListAvengerRepositoryCacheWithCloudPolicyImpl Class
  *
  *
- * Cache Policy Class with Cloud
+ * <p>Cache Policy Class with Cloud</p>
  */
 class ListAvengerRepositoryCacheWithCloudPolicyImpl(private val listAvengerCloudDataSource: ListAvengerCloudDataSource,
                                                     private val listAvengerDiskDataSource: ListAvengerDiskDataSource): ListAvengerRepositoryPolicy {
@@ -25,11 +25,9 @@ class ListAvengerRepositoryCacheWithCloudPolicyImpl(private val listAvengerCloud
 
         var avengers: AvengersModel? = listAvengerDiskDataSource.getAvengersList()
 
-        avengers?.let {
-            if (ConnectivityHelper.isConnected) {
+        if (avengers == null && ConnectivityHelper.isConnected) {
                 avengers = listAvengerCloudDataSource.getAvengersList()
-                avengers?.let { listAvengerDiskDataSource.setAvengers(avengers!!) }
-            }
+                avengers?.let { listAvengerDiskDataSource.setAvengers(it) }
         }
 
         return avengers

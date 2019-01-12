@@ -9,6 +9,10 @@ class LisAvengersRepositoryImpl(private val listAvengerRepositoryPolicy: ListAve
 
     override fun getAvengersList(): AvengersModel? {
 
-        return listAvengerRepositoryPolicy.getAvengersList()
+        listAvengerRepositoryPolicy.getAvengersList()?.let {
+            return it
+        } ?:kotlin.run {
+            throw Exception("Hi There!")
+        }
     }
 }

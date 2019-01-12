@@ -6,6 +6,6 @@ import org.koin.dsl.module.module
 
 val ListAvengerPoliciesModule = module(override=true) {
     single<ListAvengerRepositoryPolicy> { ListAvengerRepositoryCloudWithCachePolicyImpl(get(), get()) }
-    //single<ListAvengerRepositoryPolicy> { ListAvengerRepositoryCacheWithCloudPolicyImpl(get()) }
-    //single<ListAvengerRepositoryPolicy> { ListAvengerRepositoryOnlyCloudPolicyImpl(get())}
+    //single<ListAvengerRepositoryPolicy> { ListAvengerRepositoryCacheWithCloudPolicyImpl(get(), get()) }
+    //single<ListAvengerRepositoryPolicy> { ListAvengerRepositoryOnlyCloudPolicyImpl(get()) }
 }
