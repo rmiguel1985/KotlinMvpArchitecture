@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:elevation="12dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_alignRight="@+id/avenger_list_recyclerview"
         android:layout_alignEnd="@+id/avenger_list_recyclerview"
         android:layout_alignParentLeft="true"
