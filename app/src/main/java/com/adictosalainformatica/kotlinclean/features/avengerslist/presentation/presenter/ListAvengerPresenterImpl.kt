@@ -6,7 +6,7 @@ import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.LoadAv
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel
 import timber.log.Timber
 
-class PresenterImpl(private val useCaseAvenger: LoadAvengersListUseCaseImpl): BasePresenter<AvengersListPresenterView>(){
+class ListAvengerPresenterImpl(private val useCaseAvenger: LoadAvengersListUseCaseImpl): BasePresenter<AvengersListPresenterView>(){
 
     init {
         (useCaseAvenger as BaseUseCase<Any>).autoClear()

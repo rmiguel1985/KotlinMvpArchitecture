@@ -14,7 +14,7 @@ import com.adictosalainformatica.kotlinclean.features.avengersdetail.AvengerDeta
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Avenger
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Result
 import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.presenter.AvengersListPresenterView
-import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.presenter.PresenterImpl
+import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.presenter.ListAvengerPresenterImpl
 import com.adictosalainformatica.kotlinclean.utils.Constants.AVENGER_KEY
 import com.adictosalainformatica.kotlinclean.utils.Constants.AVENGER_LIST_PRESENTER
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,7 +25,7 @@ import timber.log.Timber
 
 class MainActivity : BaseActivity(), AvengersListPresenterView, AvengersListAdapter.OnAvengerListItemClickedListener {
 
-    private val avengersListPresenter: PresenterImpl by inject()
+    private val avengersListPresenter: ListAvengerPresenterImpl by inject()
     private var adapter: AvengersListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
