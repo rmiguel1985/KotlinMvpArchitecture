@@ -6,6 +6,7 @@ ext {
     okHttpVersion = '3.6.0'
     picassoVersion = '2.5.2'
     koinVersion = '1.0.0'
+    koinScopeVersion = '1.0.2'
     picassoTransformationsVersion = '2.1.0'
     leakCanaryVersion = '1.6.1'
     coroutinesVersion = '1.0.0'
@@ -23,6 +24,7 @@ ext {
         leakcanary              : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
         coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
         gson                    : "com.google.code.gson:gson:${gsonVersion}",
-        tapadoo                 : "com.tapadoo.android:alerter:${tapadooVersion}"
+        tapadoo                 : "com.tapadoo.android:alerter:${tapadooVersion}",
+        koinScope               : "org.koin:koin-android-scope:$koinScopeVersion"
     ]
 }

@@ -21,4 +21,7 @@ object Constants {
 
     /* Parcelable */
     const val AVENGER_KEY = "avenger"
+
+    /* Koin Presenters */
+    const val AVENGER_LIST_PRESENTER = "AVENGER_LIST_PRESENTER"
 }

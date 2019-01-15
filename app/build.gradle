@@ -59,7 +59,8 @@ dependencies {
             rootProject.ext.dependencies.leakcanary,
             rootProject.ext.dependencies.coroutines,
             rootProject.ext.dependencies.gson,
-            rootProject.ext.dependencies.tapadoo
+            rootProject.ext.dependencies.tapadoo,
+            rootProject.ext.dependencies.koinScope,
     )
 
     debugImplementation(

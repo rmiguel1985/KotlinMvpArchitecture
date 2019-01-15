@@ -16,8 +16,11 @@ import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entiti
 import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.presenter.AvengersListPresenterView
 import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.presenter.PresenterImpl
 import com.adictosalainformatica.kotlinclean.utils.Constants.AVENGER_KEY
+import com.adictosalainformatica.kotlinclean.utils.Constants.AVENGER_LIST_PRESENTER
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
+import org.koin.android.scope.ext.android.bindScope
+import org.koin.android.scope.ext.android.getOrCreateScope
 import timber.log.Timber
 
 class MainActivity : BaseActivity(), AvengersListPresenterView, AvengersListAdapter.OnAvengerListItemClickedListener {
@@ -28,6 +31,8 @@ class MainActivity : BaseActivity(), AvengersListPresenterView, AvengersListAdap
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        bindScope(getOrCreateScope(AVENGER_LIST_PRESENTER))
         avengersListPresenter.attachView(this, lifecycle)
 
         createAvengersListAdapter()
