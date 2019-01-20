@@ -4,5 +4,5 @@ import com.adictosalainformatica.kotlinclean.base.presentation.presenter.BasePre
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Result
 
 interface AvengersListPresenterView: BasePresenterViewInterface {
-    fun onAvengersListLoaded(fileName: List<Result>)
+    fun onAvengersListLoaded(avengersList: List<Result>)
 }

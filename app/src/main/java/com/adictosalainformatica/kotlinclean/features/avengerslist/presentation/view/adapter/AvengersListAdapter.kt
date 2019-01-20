@@ -1,15 +1,13 @@
-package com.adict
+package com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.view.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.adictosalainformatica.kotlinclean.R
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Result
-import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.view.adapter.AvengersListItemViewHolder
 import java.lang.ref.WeakReference
 
-class AvengersListAdapter(private val context: Context): RecyclerView.Adapter<AvengersListItemViewHolder>() {
+class AvengersListAdapter : RecyclerView.Adapter<AvengersListItemViewHolder>() {
     private var avengers:List<Result>? = null
     private var clickedListenerRef: WeakReference<OnAvengerListItemClickedListener>? = null
 
@@ -27,12 +25,9 @@ class AvengersListAdapter(private val context: Context): RecyclerView.Adapter<Av
 
     val holder = AvengersListItemViewHolder(itemView, parent)
 
-    itemView.setOnClickListener { view->
-            clickedListenerRef?.get()?.let {
-                it.onAvengerListItemClicked(avengers?.get(holder.adapterPosition))
-            }
+    itemView.setOnClickListener {
+        clickedListenerRef?.get()?.onAvengerListItemClicked(avengers?.get(holder.adapterPosition))
     }
-
 
         return holder
     }
@@ -43,9 +38,10 @@ class AvengersListAdapter(private val context: Context): RecyclerView.Adapter<Av
     }
 
     override fun onBindViewHolder(holder:AvengersListItemViewHolder, position:Int) {
-        holder.decorate(avengers!![position].name!!,
-                avengers!![position].thumbnail!!.path + "." +
-                avengers!![position].thumbnail!!.extension, context)
+        val imageUrl = avengers!![position].thumbnail!!.path + "." +
+                avengers!![position].thumbnail!!.extension
+
+        holder.decorate(avengers!![position].name!!, imageUrl)
     }
 
     override fun getItemCount():Int {

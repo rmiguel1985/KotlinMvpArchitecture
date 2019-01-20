@@ -16,11 +16,13 @@ class ListAvengerPresenterImpl(private val useCaseAvenger: LoadAvengersListUseCa
         view()?.showProgress()
         useCaseAvenger.execute {
             onComplete { avenger: AvengersModel ->
-                view()?.hideProgress()
-                avenger.data?.results?.let {
-                    view()?.onAvengersListLoaded(it)
-                } ?:kotlin.run {
-                    view()?.showError("Error loading avengers list")
+                view()?.apply {
+                    hideProgress()
+                    avenger.data?.results?.let {
+                        onAvengersListLoaded(it)
+                    } ?:kotlin.run {
+                        showError("Error loading avengers list")
+                    }
                 }
             }
 
@@ -29,8 +31,10 @@ class ListAvengerPresenterImpl(private val useCaseAvenger: LoadAvengersListUseCa
             }
 
             onError { throwable ->
-                view()?.hideProgress()
-                view()?.showError("Error loading avengers list")
+                view()?.apply {
+                    hideProgress()
+                    showError("Error loading avengers list")
+                }
                 Timber.e(throwable.message)
             }
         }

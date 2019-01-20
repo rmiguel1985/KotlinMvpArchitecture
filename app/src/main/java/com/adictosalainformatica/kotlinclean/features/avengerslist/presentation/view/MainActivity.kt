@@ -2,12 +2,10 @@ package com.adictosalainformatica.kotlinclean.features.avengerslist.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.adict.AvengersListAdapter
 import com.adictosalainformatica.kotlinclean.R
 import com.adictosalainformatica.kotlinclean.base.presentation.BaseActivity
 import com.adictosalainformatica.kotlinclean.features.avengersdetail.AvengerDetailActivity
@@ -15,6 +13,7 @@ import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entiti
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Result
 import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.presenter.AvengersListPresenterView
 import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.presenter.ListAvengerPresenterImpl
+import com.adictosalainformatica.kotlinclean.features.avengerslist.presentation.view.adapter.AvengersListAdapter
 import com.adictosalainformatica.kotlinclean.utils.Constants.AVENGER_KEY
 import com.adictosalainformatica.kotlinclean.utils.Constants.AVENGER_LIST_PRESENTER
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,25 +36,16 @@ class MainActivity : BaseActivity(), AvengersListPresenterView, AvengersListAdap
 
         createAvengersListAdapter()
         avengersListPresenter.loadAvengers()
-        Toast.makeText(this, "asdfasdf", Toast.LENGTH_LONG).show()
     }
 
     private fun createAvengersListAdapter() {
-        adapter = AvengersListAdapter(applicationContext)
+        adapter = AvengersListAdapter()
         adapter?.setOnAvengerListItemClickedListener(this)
         avenger_list_recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         avenger_list_recyclerview.itemAnimator = DefaultItemAnimator()
         avenger_list_recyclerview.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
         avenger_list_recyclerview.adapter = adapter
     }
-
-    /*override fun showProgress() {
-        avengerslist_progressbar_list.visibility = View.VISIBLE
-    }*/
-
-    /*override fun hideProgress() {
-        avengerslist_progressbar_list.visibility = View.GONE
-    }*/
 
     override fun onAvengersListLoaded(avengersList: List<Result>) {
         Timber.d("Avengers list loaded")
@@ -68,7 +58,7 @@ class MainActivity : BaseActivity(), AvengersListPresenterView, AvengersListAdap
             val intent = Intent(applicationContext, AvengerDetailActivity::class.java)
             val imageUrl = it.thumbnail?.path + "." + it.thumbnail?.extension
 
-            var avenger = Avenger(
+            val avenger = Avenger(
                     (it.name.orEmpty()),
                     (it.modified.orEmpty()),
                     (imageUrl),
