@@ -30,7 +30,7 @@ class AvengerDetailActivity : AppCompatActivity() {
         detail_date.text = avengerModel.avengerDateUpdate
         detail_title.text = "Id: ${avengerModel.avengerName}"
         avenger_detail.text = avengerModel.description
-        Picasso.with(applicationContext)
+        Picasso.get()
                 .load(avengerModel.imageUrl)
                 .into(detail_image)
     }

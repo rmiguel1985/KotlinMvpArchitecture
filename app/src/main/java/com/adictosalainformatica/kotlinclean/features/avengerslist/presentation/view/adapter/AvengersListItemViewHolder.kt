@@ -11,7 +11,7 @@ class AvengersListItemViewHolder(itemView: View, override val containerView: Vie
 
     fun decorate(avengerName: String?, imageUrl: String?) {
         itemView.avengers_list_item_txt.text = avengerName
-        Picasso.with(itemView.context)
+        Picasso.get()
                 .load(imageUrl)
                 .resize(200, 200)
                 .transform(CropCircleTransformation())

@@ -35,7 +35,7 @@ class ListAvengerPresenterImpl(private val useCaseAvenger: LoadAvengersListUseCa
                     hideProgress()
                     showError("Error loading avengers list")
                 }
-                Timber.e(throwable.message)
+                Timber.e(throwable)
             }
         }
     }
