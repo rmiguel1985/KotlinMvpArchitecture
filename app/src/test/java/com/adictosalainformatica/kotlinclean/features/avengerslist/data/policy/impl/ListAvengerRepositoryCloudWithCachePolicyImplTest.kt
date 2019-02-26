@@ -19,7 +19,7 @@ class ListAvengerRepositoryCloudWithCachePolicyImplTest {
 
     private val listAvengerCloudDataSourceImpl = mockk<ListAvengerRetrofitDataSourceImpl>()
 
-    private var listAvengerRepositoryCloudWithCachePolicyImpl: ListAvengerRepositoryCloudWithCachePolicyImpl? = null
+    lateinit var listAvengerRepositoryCloudWithCachePolicyImpl: ListAvengerRepositoryCloudWithCachePolicyImpl
 
     @Before
     fun setUp() {
@@ -29,7 +29,6 @@ class ListAvengerRepositoryCloudWithCachePolicyImplTest {
 
     @After
     fun tearDown() {
-        listAvengerRepositoryCloudWithCachePolicyImpl = null
     }
 
     @Test
