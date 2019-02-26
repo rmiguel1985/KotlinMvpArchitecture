@@ -1,17 +1,17 @@
 //@formatter:off
 
 ext {
-    timberVersion = '4.5.1'
-    retrofitVersion = '2.2.0'
-    okHttpVersion = '3.6.0'
-    picassoVersion = '2.5.2'
-    koinVersion = '1.0.0'
-    koinScopeVersion = '1.0.2'
-    picassoTransformationsVersion = '2.1.0'
+    timberVersion = '4.7.1'
+    retrofitVersion = '2.5.0'
+    okHttpVersion = '3.13.1'
+    picassoVersion = '2.71828'
+    koinVersion = '1.0.2'
+    picassoTransformationsVersion = '2.2.1'
     leakCanaryVersion = '1.6.1'
-    coroutinesVersion = '1.0.0'
-    gsonVersion = '2.8.2'
+    coroutinesVersion = '1.1.1'
+    gsonVersion = '2.8.5'
     tapadooVersion = '4.0.0'
+    mockkVersion = '1.9'
 
     dependencies = [
         timber                  : "com.jakewharton.timber:timber:${timberVersion}",
@@ -23,8 +23,10 @@ ext {
         okhttp_interceptor      : "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
         leakcanary              : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
         coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
+        coroutinesTest          : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}",
+        mockk                   : "io.mockk:mockk:${mockkVersion}",
         gson                    : "com.google.code.gson:gson:${gsonVersion}",
         tapadoo                 : "com.tapadoo.android:alerter:${tapadooVersion}",
-        koinScope               : "org.koin:koin-android-scope:$koinScopeVersion"
+        koinScope               : "org.koin:koin-android-scope:$koinVersion"
     ]
 }
