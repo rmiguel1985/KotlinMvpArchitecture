@@ -11,7 +11,7 @@ import android.telephony.TelephonyManager
  */
 object ConnectivityHelper {
 
-    private var context: Context? = null
+    private lateinit var context: Context
 
     /**
      * Get the network info
@@ -19,7 +19,7 @@ object ConnectivityHelper {
      */
     private val networkInfo: NetworkInfo?
         get() {
-            val cm = context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             return cm.activeNetworkInfo
         }
 

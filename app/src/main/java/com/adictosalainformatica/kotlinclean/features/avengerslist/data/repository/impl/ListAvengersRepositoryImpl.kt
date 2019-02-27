@@ -5,7 +5,7 @@ import com.adictosalainformatica.kotlinclean.features.avengerslist.data.policy.L
 import com.adictosalainformatica.kotlinclean.features.avengerslist.data.repository.ListAvengersRepository
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel
 
-class LisAvengersRepositoryImpl(private val listAvengerRepositoryPolicy: ListAvengerRepositoryPolicy) : ListAvengersRepository {
+class ListAvengersRepositoryImpl(private val listAvengerRepositoryPolicy: ListAvengerRepositoryPolicy) : ListAvengersRepository {
 
     override fun getAvengersList(): AvengersModel? {
 
