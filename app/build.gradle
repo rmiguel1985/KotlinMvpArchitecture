@@ -30,7 +30,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'API_BASE_URL', "\"$release_api_url\""
             buildConfigField "String", "API_URL", "\"$release_api_url\""
-            buildConfigField 'String', 'API_URL_PORT', "\"$release_api_port\""
+            buildConfigField 'String', 'API_PORT', "\"$release_api_port\""
         }
     }
     compileOptions {
