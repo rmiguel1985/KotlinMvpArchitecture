@@ -15,14 +15,17 @@ import java.io.IOException
 
 class ListAvengerRepositoryCloudWithCachePolicyImplTest {
 
-    private var listAvengerDiskDataSource = mockk<ListAvengerRoomDataSourceImpl>()
+    private val listAvengerDiskDataSource =
+            mockk<ListAvengerRoomDataSourceImpl>()
 
-    private val listAvengerCloudDataSourceImpl = mockk<ListAvengerRetrofitDataSourceImpl>()
+    private val listAvengerCloudDataSourceImpl =
+            mockk<ListAvengerRetrofitDataSourceImpl>()
 
-    lateinit var listAvengerRepositoryCloudWithCachePolicyImpl: ListAvengerRepositoryCloudWithCachePolicyImpl
+    private lateinit var listAvengerRepositoryCloudWithCachePolicyImpl: ListAvengerRepositoryCloudWithCachePolicyImpl
 
     @Before
     fun setUp() {
+        mockkObject(ConnectivityHelper)
         listAvengerRepositoryCloudWithCachePolicyImpl = ListAvengerRepositoryCloudWithCachePolicyImpl(
                 listAvengerCloudDataSourceImpl, listAvengerDiskDataSource)
     }
@@ -34,12 +37,11 @@ class ListAvengerRepositoryCloudWithCachePolicyImplTest {
     @Test
     fun getAvengersList_without_connectivity_calls_disk_data_source() {
         //Given
-        mockkObject(ConnectivityHelper)
         every { listAvengerDiskDataSource.getAvengersList() } returns null
         every {ConnectivityHelper.isConnected} returns (false)
 
         //When
-        listAvengerRepositoryCloudWithCachePolicyImpl!!.getAvengersList()
+        listAvengerRepositoryCloudWithCachePolicyImpl.getAvengersList()
 
         //Then
         verify {listAvengerDiskDataSource.getAvengersList()}
@@ -49,12 +51,11 @@ class ListAvengerRepositoryCloudWithCachePolicyImplTest {
     @Throws(IOException::class)
     fun getAvengersList_with_connectivity_calls_cloud_data_source() {
         //Given
-        mockkObject(ConnectivityHelper)
         every { listAvengerCloudDataSourceImpl.getAvengersList() } returns null
         every {ConnectivityHelper.isConnected} returns (true)
 
         //When
-        listAvengerRepositoryCloudWithCachePolicyImpl!!.getAvengersList()
+        listAvengerRepositoryCloudWithCachePolicyImpl.getAvengersList()
 
         //Then
         verify {listAvengerCloudDataSourceImpl.getAvengersList()}

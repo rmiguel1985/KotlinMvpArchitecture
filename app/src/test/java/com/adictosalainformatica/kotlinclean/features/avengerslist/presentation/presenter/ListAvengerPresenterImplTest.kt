@@ -2,7 +2,7 @@ package com.adictosalainformatica.kotlinclean.features.avengerslist.presentation
 
 import androidx.lifecycle.LifecycleRegistry
 import com.adictosalainformatica.kotlinclean.features.avengerslist.data.policy.ListAvengerRepositoryPolicy
-import com.adictosalainformatica.kotlinclean.features.avengerslist.data.repository.impl.LisAvengersRepositoryImpl
+import com.adictosalainformatica.kotlinclean.features.avengerslist.data.repository.impl.ListAvengersRepositoryImpl
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.LoadAvengersListUseCaseImpl
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Data
@@ -24,16 +24,16 @@ class ListAvengerPresenterImplTest {
     private val lifecycle = LifecycleRegistry(mockk())
     private var view = mockk<AvengersListPresenterView>(relaxed = true)
 
-    lateinit var listAvengersRepository: LisAvengersRepositoryImpl
+    lateinit var listTAvengersRepository: ListAvengersRepositoryImpl
     lateinit var avengersListPresenter: ListAvengerPresenterImpl
     lateinit var loadAvengersListUseCase: LoadAvengersListUseCaseImpl
 
     @Before
     fun setUp() {
         Dispatchers.setMain(Dispatchers.Unconfined)
-        listAvengersRepository = LisAvengersRepositoryImpl(listAvengerRepositoryPolicy)
+        listTAvengersRepository = ListAvengersRepositoryImpl(listAvengerRepositoryPolicy)
 
-        loadAvengersListUseCase = LoadAvengersListUseCaseImpl(listAvengersRepository)
+        loadAvengersListUseCase = LoadAvengersListUseCaseImpl(listTAvengersRepository)
 
         avengersListPresenter = ListAvengerPresenterImpl(loadAvengersListUseCase)
         avengersListPresenter.attachView(view, lifecycle)
