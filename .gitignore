@@ -19,15 +19,8 @@ out/
 com_crashlytics_export_strings.xml
 
 ## Gradle
-.gradle
-gradle-app.setting
 .gradle/
-captures/
-gradlew
-gradlew.bat
-gradle-wrapper*
-gradle/
-gradle.propierties
+build/
 
 # built application files
 *.apk
