@@ -12,6 +12,7 @@ ext {
     gsonVersion = '2.8.5'
     tapadooVersion = '4.0.0'
     mockkVersion = '1.9'
+    stethoVersion = '1.5.0'
 
     dependencies = [
         timber                  : "com.jakewharton.timber:timber:${timberVersion}",
@@ -21,10 +22,13 @@ ext {
         retrofit                : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
         retrofit_converter_gson : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
         okhttp_interceptor      : "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+        mock_web_server         : "com.squareup.okhttp3:mockwebserver:$okHttpVersion",
+        setetho                 : "com.facebook.stetho:stetho-okhttp3:$stethoVersion",
         leakcanary              : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
         coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
         coroutinesTest          : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}",
         mockk                   : "io.mockk:mockk:${mockkVersion}",
+        mockkAndroid            : "io.mockk:mockk-android:${mockkVersion}",
         gson                    : "com.google.code.gson:gson:${gsonVersion}",
         tapadoo                 : "com.tapadoo.android:alerter:${tapadooVersion}",
         koinScope               : "org.koin:koin-android-scope:$koinVersion"

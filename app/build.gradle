@@ -55,6 +55,10 @@ dependencies {
             rootProject.ext.dependencies.mockk,
     )
 
+    androidTestImplementation(
+            rootProject.ext.dependencies.mockkAndroid
+    )
+
 
     implementation "android.arch.persistence.room:runtime:1.1.1"
     kapt "android.arch.persistence.room:compiler:1.1.1"
@@ -67,11 +71,13 @@ dependencies {
             rootProject.ext.dependencies.retrofit,
             rootProject.ext.dependencies.retrofit_converter_gson,
             rootProject.ext.dependencies.okhttp_interceptor,
+            rootProject.ext.dependencies.mock_web_server,
             rootProject.ext.dependencies.leakcanary,
             rootProject.ext.dependencies.coroutines,
             rootProject.ext.dependencies.gson,
             rootProject.ext.dependencies.tapadoo,
             rootProject.ext.dependencies.koinScope,
+            rootProject.ext.dependencies.setetho,
     )
 
     debugImplementation(
