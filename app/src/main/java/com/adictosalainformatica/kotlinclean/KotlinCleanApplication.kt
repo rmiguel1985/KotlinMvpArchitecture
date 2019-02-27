@@ -9,6 +9,7 @@ import com.adictosalainformatica.kotlinclean.features.avengerslist.koin.avengers
 import com.adictosalainformatica.kotlinclean.utils.ConnectivityHelper
 import com.adictosalainformatica.kotlinclean.utils.Constants
 import com.adictosalainformatica.kotlinclean.utils.PreferenceHelper
+import com.facebook.stetho.Stetho
 import com.squareup.leakcanary.LeakCanary
 import org.koin.android.ext.android.startKoin
 import org.koin.dsl.module.Module
@@ -17,7 +18,7 @@ import timber.log.Timber
 class KotlinCleanApplication: BaseApplication() {
 
     companion object {
-        var database: AppDatabase? = null
+        lateinit var database: AppDatabase
     }
 
     override fun onCreate() {
@@ -26,6 +27,7 @@ class KotlinCleanApplication: BaseApplication() {
         initializeLogging()
         initializeHelpers()
         initializeRoom()
+        initializeStetho()
 
         var koinModules: MutableList<Module> = mutableListOf(MainModule)
         koinModules.addAll(avengersListMainModule)
@@ -51,6 +53,12 @@ class KotlinCleanApplication: BaseApplication() {
     override fun initializeHelpers() {
         ConnectivityHelper.setContext(applicationContext)
         PreferenceHelper.setContext(applicationContext)
+    }
+
+    override fun initializeStetho() {
+        if(isDebugBuild()) {
+            Stetho.initializeWithDefaults(this);
+        }
     }
 
     /**
