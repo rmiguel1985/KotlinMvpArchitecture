@@ -39,7 +39,7 @@ abstract class BaseUseCase<T> {
                 Timber.d("BaseUseCase canceled by user")
                 response(cancellationException)
             } catch (e: Exception) {
-                Timber.e("BaseUseCase exception", e)
+                Timber.e("BaseUseCase exception: %s", e.message)
                 response(e)
             }
         }
