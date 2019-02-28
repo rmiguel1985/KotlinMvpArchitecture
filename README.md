@@ -1,4 +1,4 @@
-# KotlinKlean
+# KotlinKlean  [![Build Status](https://app.bitrise.io/app/21ebdeb9e75c32dc/status.svg?token=IBw-qWWJR-mXXVU9Es97Ng)](https://app.bitrise.io/app/21ebdeb9e75c32dc)
 
 The purpose of this repo is to create an application that tries to 
 implement Clean Architecture principles with MVP in Kotlin.
