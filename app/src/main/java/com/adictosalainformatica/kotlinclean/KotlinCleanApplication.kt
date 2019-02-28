@@ -28,6 +28,7 @@ class KotlinCleanApplication: BaseApplication() {
         initializeHelpers()
         initializeRoom()
         initializeStetho()
+        initializeDiagnosticTools()
 
         var koinModules: MutableList<Module> = mutableListOf(MainModule)
         koinModules.addAll(avengersListMainModule)
