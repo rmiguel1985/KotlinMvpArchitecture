@@ -7,6 +7,7 @@ import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.LoadAv
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.AvengersModel
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Data
 import com.adictosalainformatica.kotlinclean.features.avengerslist.domain.entities.Result
+import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -23,38 +24,43 @@ class ListAvengerPresenterImplTest {
     private var listAvengerRepositoryPolicy = mockk<ListAvengerRepositoryPolicy>()
     private val lifecycle = LifecycleRegistry(mockk())
     private var view = mockk<AvengersListPresenterView>(relaxed = true)
-
-    lateinit var listTAvengersRepository: ListAvengersRepositoryImpl
-    lateinit var avengersListPresenter: ListAvengerPresenterImpl
-    lateinit var loadAvengersListUseCase: LoadAvengersListUseCaseImpl
+    private var avengersListPresenter: ListAvengerPresenterImpl? = null
+    private var listAvengersRepository: ListAvengersRepositoryImpl? = null
+    private var loadAvengersListUseCase: LoadAvengersListUseCaseImpl? = null
 
     @Before
     fun setUp() {
         Dispatchers.setMain(Dispatchers.Unconfined)
-        listTAvengersRepository = ListAvengersRepositoryImpl(listAvengerRepositoryPolicy)
+        listAvengersRepository = ListAvengersRepositoryImpl(listAvengerRepositoryPolicy)
 
-        loadAvengersListUseCase = LoadAvengersListUseCaseImpl(listTAvengersRepository)
+        loadAvengersListUseCase = LoadAvengersListUseCaseImpl(listAvengersRepository!!)
 
-        avengersListPresenter = ListAvengerPresenterImpl(loadAvengersListUseCase)
-        avengersListPresenter.attachView(view, lifecycle)
+        avengersListPresenter = ListAvengerPresenterImpl(loadAvengersListUseCase!!)
+        avengersListPresenter?.attachView(view, lifecycle)
     }
 
     @After
     fun tearDown() {
         Dispatchers.resetMain()
+        clearAllMocks()
+        avengersListPresenter = null
+        listAvengersRepository = null
+        loadAvengersListUseCase = null
     }
 
     @Test
     @Throws(Exception::class)
     fun stage1_loadAvengersList_calls_showErrorLoadingAvengersList_on_repository_error() {
-        //When
+        //Given
         every {listAvengerRepositoryPolicy.getAvengersList()} returns (null)
-        avengersListPresenter.loadAvengers()
+
+        //When
+        avengersListPresenter?.loadAvengers()
 
         //Then
         verify {view.showProgress()}
+        //verify {view.hideProgress()}
         verify {view.showError(any())}
-        verify {view.hideProgress()}
     }
 
     @Test
@@ -72,10 +78,10 @@ class ListAvengerPresenterImplTest {
 
         data.results = avengersList
         avengersModel.data = data
+        every {listAvengerRepositoryPolicy.getAvengersList()} returns (avengersModel)
 
         //When
-        every {listAvengerRepositoryPolicy.getAvengersList()} returns (avengersModel)
-        avengersListPresenter.loadAvengers()
+        avengersListPresenter?.loadAvengers()
 
         //Then
         verify {view.showProgress()}
